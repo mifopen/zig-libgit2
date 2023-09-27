@@ -65,11 +65,11 @@ pub fn build(b: *std.Build) void {
 pub fn addLibGit(exe: *std.Build.CompileStep, module: *std.Build.Module) void {
     exe.addModule("git", module);
     exe.linkLibC();
-    exe.addLibraryPath("/opt/homebrew/lib");
-    exe.addSystemIncludePath("/opt/homebrew/include");
+    exe.addLibraryPath(.{ .path = "/opt/homebrew/lib" });
+    exe.addSystemIncludePath(.{ .path = "/opt/homebrew/include" });
 
     // TODO: Don't hard code this...
-    exe.addIncludePath("../libgit2/include");
-    exe.addLibraryPath("../libgit2/build");
+    exe.addIncludePath(.{ .path = "../libgit2/include" });
+    exe.addLibraryPath(.{ .path = "../libgit2/build" });
     exe.linkSystemLibraryName("git2");
 }
